@@ -3,6 +3,8 @@ seq_len = 128 # example length in tokens
 epochs = 3
 
 # Model hyperparameters
+# Total params ≈ embedding_params + num_hidden_layers * (4 * hidden_size^2 + 3 * hidden_size * intermediate_size + 4 * hidden_size)
+# where embedding_params ≈ (vocab_size + 2 * max_position_embeddings) * hidden_size
 hidden_size=320
 intermediate_size=768
 num_hidden_layers=32
