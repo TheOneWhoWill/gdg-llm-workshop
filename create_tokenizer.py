@@ -6,7 +6,11 @@ import constants
 VOCAB_SIZE=constants.vocab_size
 ROOT = Path(__file__).resolve().parent
 DATASET_DIR = ROOT / "dataset"
-TXT_FILES = sorted(DATASET_DIR.glob("*.txt"))
+TXT_FILES = sorted(DATASET_DIR.rglob("*.txt"))
+
+if not TXT_FILES:
+    print(f"No .txt files found recursively in {DATASET_DIR}.")
+    exit()
 
 tokenizer = Tokenizer(models.BPE(unk_token=None))
 tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
